@@ -1,0 +1,6 @@
+@AISearchUserAPI_HostAddress = http://localhost:5009
+
+GET {{AISearchUserAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
