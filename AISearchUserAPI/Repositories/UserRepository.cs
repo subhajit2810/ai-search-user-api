@@ -49,4 +49,15 @@ public class UserRepository : IUserRepository
         _users.Remove(user);
         return Task.FromResult(true);
     }
+
+    public Task<IEnumerable<User>> SearchUsersAsync(string query)
+    {
+        var result = _users
+            .Where(u =>
+                u.Name.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                u.Email.Contains(query, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+
+        return Task.FromResult<IEnumerable<User>>(result);
+    }
 }

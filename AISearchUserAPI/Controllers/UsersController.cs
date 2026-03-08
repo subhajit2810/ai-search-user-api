@@ -58,4 +58,11 @@ public class UsersController : ControllerBase
 
         return NoContent();
     }
+
+    [HttpGet("search")]
+    public async Task<ActionResult<IEnumerable<User>>> SearchUsers([FromQuery] string query)
+    {
+        var users = await _userService.SearchUsersAsync(query);
+        return Ok(users);
+    }
 }

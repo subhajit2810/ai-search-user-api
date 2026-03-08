@@ -51,4 +51,12 @@ public class UserService : IUserService
 
         return await _userRepository.DeleteUserAsync(id);
     }
+
+    public async Task<IEnumerable<User>> SearchUsersAsync(string query)
+    {
+        if (string.IsNullOrWhiteSpace(query))
+            throw new ArgumentException("Search query cannot be empty");
+
+        return await _userRepository.SearchUsersAsync(query);
+    }
 }
