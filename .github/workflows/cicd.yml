@@ -5,7 +5,6 @@ on:
   push:
     branches: 
       - main
-      - subhajit/test/render-deployment
 
 jobs:
   build:
