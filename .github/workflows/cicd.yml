@@ -1,8 +1,10 @@
 name: CI/CD Pipeline
 
 on:
+  workflow_dispatch:
   push:
-    branches: main
+    branches: 
+      - main
 
 jobs:
   build:
@@ -24,4 +26,8 @@ jobs:
     
     - name: Run tests
       run: dotnet test --configuration Release --no-build --verbosity normal
+    
+    - name: Deploy to Render
+      run: |
+        curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }} -X POST
 
